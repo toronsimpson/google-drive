@@ -11,7 +11,7 @@ spring:
         - id: drive
           uri: http://localhost:8081
           predicates:
-            - Path=/uploads/**, 
+            - Path=/files/**, 
         - id: indexer
           uri: http://localhost:8082
           predicates:
@@ -54,7 +54,7 @@ spring:
         - id: drive
           uri: http://drive:8080
           predicates:
-            - Path=/uploads/**, 
+            - Path=/files/**, 
         - id: indexer
           uri: http://indexer:8080
           predicates:

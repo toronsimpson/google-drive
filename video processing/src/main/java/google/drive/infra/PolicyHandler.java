@@ -21,4 +21,20 @@ public class PolicyHandler {
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='FileUploaded'"
+    )
+    public void wheneverFileUploaded_ProcessVideo(
+        @Payload FileUploaded fileUploaded
+    ) {
+        FileUploaded event = fileUploaded;
+        System.out.println(
+            "\n\n##### listener ProcessVideo : " + fileUploaded + "\n\n"
+        );
+
+        // Sample Logic //
+        Video.processVideo(event);
+    }
 }

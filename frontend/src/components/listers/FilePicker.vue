@@ -14,6 +14,18 @@
                         <v-list-item-content>
                             <v-list-item-title>
                             </v-list-item-title>
+                            <v-list-item-subtitle>
+                                Name :  {{item.name }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Path :  {{item.path }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Size :  {{item.size }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Type :  {{item.type }}
+                            </v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -31,7 +43,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'UploadPicker',
+        name: 'FilePicker',
         props: {
             value: [String, Object, Array, Number, Boolean],
         },
@@ -41,14 +53,14 @@
         }),
         async created() {
             var me = this;
-            var temp = await axios.get(axios.fixUrl('/uploads'))
+            var temp = await axios.get(axios.fixUrl('/files'))
             if(temp.data) {
-                me.list = temp.data._embedded.uploads;
+                me.list = temp.data._embedded.files;
             }
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
                 var id = Object.values(me.value)[0];
-                var tmpValue = await axios.get(axios.fixUrl('/uploads/' + id))
+                var tmpValue = await axios.get(axios.fixUrl('/files/' + id))
                 if(tmpValue.data) {
                     var val = tmpValue.data
                     me.list.forEach(function(item, idx) {
@@ -65,6 +77,14 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     this.$emit('selected', obj);
                 }

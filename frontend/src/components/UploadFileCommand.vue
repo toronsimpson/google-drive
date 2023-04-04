@@ -2,7 +2,7 @@
 
     <v-card outlined>
         <v-card-title>
-            Upload
+            UploadFile
         </v-card-title>
 
         <v-card-text>
@@ -13,9 +13,9 @@
             <v-btn
                     color="deep-purple lighten-2"
                     text
-                    @click="upload"
+                    @click="uploadFile"
             >
-                Upload
+                UploadFile
             </v-btn>
             
             <v-btn
@@ -33,7 +33,7 @@
 <script>
    
     export default {
-        name: 'UploadCommand',
+        name: 'UploadFileCommand',
         components:{},
         props: {},
         data: () => ({
@@ -45,8 +45,8 @@
         watch: {
         },
         methods: {
-            upload() {
-                this.$emit('upload', this.value);
+            uploadFile() {
+                this.$emit('uploadFile', this.value);
             },
             close() {
                 this.$emit('closeDialog');

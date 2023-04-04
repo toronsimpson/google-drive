@@ -10,13 +10,17 @@
         </template>
 
         <v-card-title v-if="value._links">
-            Upload # {{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
+            File # {{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
         </v-card-title >
         <v-card-title v-else>
-            Upload
+            File
         </v-card-title >
 
         <v-card-text>
+            <String label="Name" v-model="value.name" :editMode="editMode"/>
+            <String label="Path" v-model="value.path" :editMode="editMode"/>
+            <Number label="Size" v-model="value.size" :editMode="editMode"/>
+            <String label="Type" v-model="value.type" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -35,7 +39,7 @@
                     @click="save"
                     v-else
             >
-                Upload
+                UploadFile
             </v-btn>
             <v-btn
                     color="deep-purple lighten-2"
@@ -78,7 +82,7 @@
 
 
     export default {
-        name: 'Upload',
+        name: 'File',
         components:{
         },
         props: {
@@ -130,7 +134,7 @@
 
                     if(!this.offline) {
                         if(this.isNew) {
-                            temp = await axios.post(axios.fixUrl('/uploads'), this.value)
+                            temp = await axios.post(axios.fixUrl('/files'), this.value)
                         } else {
                             temp = await axios.put(axios.fixUrl(this.value._links.self.href), this.value)
                         }

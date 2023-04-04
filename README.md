@@ -1,7 +1,7 @@
 # 
 
 ## Model
-www.msaez.io/#/storming/gd_001
+www.msaez.io/#/storming/google-drive-001
 
 ## Before Running Services
 ### Make sure there is a Kafka server running
@@ -36,15 +36,15 @@ mvn spring-boot:run
 ## Test by API
 - drive
 ```
- http :8088/uploads id="id" 
+ http :8088/files id="id" name="name" path="path" size="size" type="type" 
 ```
 - indexer
 ```
- http :8088/indices id="id" 
+ http :8088/indices id="id" fileId="fileId" keywords="keywords" 
 ```
 - video processing
 ```
- http :8088/videos id="id" 
+ http :8088/videos id="id" fileId="fileId" url="url" 
 ```
 - notification
 ```

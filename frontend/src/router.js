@@ -5,8 +5,8 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 
-import UploadManager from "./components/listers/UploadCards"
-import UploadDetail from "./components/listers/UploadDetail"
+import FileManager from "./components/listers/FileCards"
+import FileDetail from "./components/listers/FileDetail"
 
 import IndexManager from "./components/listers/IndexCards"
 import IndexDetail from "./components/listers/IndexDetail"
@@ -22,14 +22,14 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
             {
-                path: '/uploads',
-                name: 'UploadManager',
-                component: UploadManager
+                path: '/files',
+                name: 'FileManager',
+                component: FileManager
             },
             {
-                path: '/uploads/:id',
-                name: 'UploadDetail',
-                component: UploadDetail
+                path: '/files/:id',
+                name: 'FileDetail',
+                component: FileDetail
             },
 
             {

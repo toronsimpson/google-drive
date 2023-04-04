@@ -10,10 +10,18 @@
                     <v-list-item-content>
                         <v-list-item-title style="margin-bottom:10px;">
                             
+                            
+                            
+                            
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Name :  {{data.name }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Path :  {{data.path }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Size :  {{data.size }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Type :  {{data.type }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -47,7 +55,7 @@
                         </v-fab-transition>
                     </template>
 
-                    <Upload :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <File :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -66,12 +74,12 @@
 
 <script>
     const axios = require('axios').default;
-    import Upload from './../Upload.vue';
+    import File from './../File.vue';
 
     export default {
-        name: 'UploadManager',
+        name: 'FileManager',
         components: {
-            Upload,
+            File,
         },
         props: {
             offline: Boolean,
@@ -90,11 +98,15 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/uploads'))
-            temp.data._embedded.uploads.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.uploads;
+            var temp = await axios.get(axios.fixUrl('/files'))
+            temp.data._embedded.files.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.files;
             
             this.newValue = {
+                'name': '',
+                'path': '',
+                'size': 0,
+                'type': '',
             }
         },
         methods: {

@@ -44,7 +44,7 @@ templateFiles.keys().forEach(function(tempFiles) {
 Vue.use(Managing);
 const pluralCaseList = []
 
-pluralCaseList.push( {plural: "uploads", pascal: "Upload"} )
+pluralCaseList.push( {plural: "files", pascal: "File"} )
 
 pluralCaseList.push( {plural: "indices", pascal: "Index"} )
 

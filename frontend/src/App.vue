@@ -39,13 +39,13 @@
 
                     <v-list-item
                         class="px-2"
-                        key="uploads"
-                        to="/uploads"
+                        key="files"
+                        to="/files"
                         @click="changeUrl()"
                         color="deep-purple lighten-2"
                         style="font-weight:700;"
                     >
-                        Upload
+                        File
                     </v-list-item>
 
 
@@ -111,16 +111,16 @@
                                             class="mx-auto"
                                             outlined
                                             rounded
-                                            key="uploads"
-                                            to="/uploads"
+                                            key="files"
+                                            to="/files"
                                             @click="changeUrl()"
                                             color="deep-purple lighten-2"
                                             style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                                         >
-                                            Upload
+                                            File
                                         </v-btn>
                                     </template>
-                                    <span>Upload</span>
+                                    <span>File</span>
                                 </v-tooltip>
                             </v-card-actions>
                         </v-card>

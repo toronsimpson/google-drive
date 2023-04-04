@@ -7,11 +7,11 @@ import org.springframework.hateoas.server.RepresentationModelProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UploadHateoasProcessor
-    implements RepresentationModelProcessor<EntityModel<Upload>> {
+public class FileHateoasProcessor
+    implements RepresentationModelProcessor<EntityModel<File>> {
 
     @Override
-    public EntityModel<Upload> process(EntityModel<Upload> model) {
+    public EntityModel<File> process(EntityModel<File> model) {
         return model;
     }
 }

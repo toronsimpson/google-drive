@@ -8,13 +8,21 @@ import javax.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "Upload_table")
+@Table(name = "File_table")
 @Data
-public class Upload {
+public class File {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
+
+    private String path;
+
+    private Integer size;
+
+    private String type;
 
     @PostPersist
     public void onPostPersist() {
@@ -22,10 +30,10 @@ public class Upload {
         fileUploaded.publishAfterCommit();
     }
 
-    public static UploadRepository repository() {
-        UploadRepository uploadRepository = DriveApplication.applicationContext.getBean(
-            UploadRepository.class
+    public static FileRepository repository() {
+        FileRepository fileRepository = DriveApplication.applicationContext.getBean(
+            FileRepository.class
         );
-        return uploadRepository;
+        return fileRepository;
     }
 }

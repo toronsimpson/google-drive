@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 style = "margin-left:4.5%; margin-top:-10px;">Upload</h1>
+        <h1 style = "margin-left:4.5%; margin-top:-10px;">File</h1>
         <v-col style="margin-bottom:40px;">
             <div class="text-center">
                 <v-dialog
@@ -10,7 +10,7 @@
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <Upload :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <File :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
 
                     <v-btn
@@ -33,7 +33,7 @@
             </div>
         </v-col>
         <v-row>
-            <Upload :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <File :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
         </v-row>
     </div>
 </template>
@@ -41,12 +41,12 @@
 <script>
 
     const axios = require('axios').default;
-    import Upload from './../Upload.vue';
+    import File from './../File.vue';
 
     export default {
-        name: 'UploadManager',
+        name: 'FileManager',
         components: {
-            Upload,
+            File,
         },
         props: {
             offline: Boolean
@@ -64,10 +64,14 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/uploads'))
-            me.values = temp.data._embedded.uploads;
+            var temp = await axios.get(axios.fixUrl('/files'))
+            me.values = temp.data._embedded.files;
             
             me.newValue = {
+                'name': '',
+                'path': '',
+                'size': 0,
+                'type': '',
             }
         },
         methods:{

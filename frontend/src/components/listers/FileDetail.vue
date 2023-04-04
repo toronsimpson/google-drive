@@ -1,10 +1,22 @@
 <template>
     <v-card outlined>
         <v-card-title>
-            Upload # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
+            File # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
         </v-card-title>
 
         <v-card-text>
+            <div>
+                <String label="Name" v-model="item.name" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Path" v-model="item.path" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="Size" v-model="item.size" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Type" v-model="item.type" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>
@@ -51,7 +63,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'UploadDetail',
+        name: 'FileDetail',
         components:{},
         props: {
         },
@@ -62,7 +74,7 @@
         async created() {
             var me = this;
             var params = this.$route.params;
-            var temp = await axios.get(axios.fixUrl('/uploads/' + params.id))
+            var temp = await axios.get(axios.fixUrl('/files/' + params.id))
             if(temp.data) {
                 me.item = temp.data
             }

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-// @RequestMapping(value="/uploads")
+// @RequestMapping(value="/files")
 @Transactional
-public class UploadController {
+public class FileController {
 
     @Autowired
-    UploadRepository uploadRepository;
+    FileRepository fileRepository;
 }

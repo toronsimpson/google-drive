@@ -7,15 +7,17 @@ import lombok.*;
 
 @Data
 @ToString
-public class ViedoStreamed extends AbstractEvent {
+public class FileIndexed extends AbstractEvent {
 
     private Long id;
+    private String fileId;
+    private List<String> keywords;
 
-    public ViedoStreamed(Video aggregate) {
+    public FileIndexed(Index aggregate) {
         super(aggregate);
     }
 
-    public ViedoStreamed() {
+    public FileIndexed() {
         super();
     }
 }

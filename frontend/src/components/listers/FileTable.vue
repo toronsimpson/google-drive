@@ -31,7 +31,7 @@
                         </v-fab-transition>
                     </template>
 
-                    <Upload :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <File :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -50,12 +50,12 @@
 
 <script>
     const axios = require('axios').default;
-    import Upload from './../Upload.vue';
+    import File from './../File.vue';
 
     export default {
-        name: 'UploadManager',
+        name: 'FileManager',
         components: {
-            Upload,
+            File,
         },
         props: {
             offline: Boolean,
@@ -67,8 +67,12 @@
             headers: 
                 [
                     { text: "id", value: "id" },
+                    { text: "name", value: "name" },
+                    { text: "path", value: "path" },
+                    { text: "size", value: "size" },
+                    { text: "type", value: "type" },
                 ],
-            upload : [],
+            file : [],
             newValue: {},
             tick : true,
             openDialog : false,
@@ -79,11 +83,15 @@
                 return;
             }
 
-            var temp = await axios.get(axios.fixUrl('/uploads'))
-            temp.data._embedded.uploads.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.uploads;
+            var temp = await axios.get(axios.fixUrl('/files'))
+            temp.data._embedded.files.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.files;
 
             this.newValue = {
+                'name': '',
+                'path': '',
+                'size': 0,
+                'type': '',
             }
         },
         methods: {

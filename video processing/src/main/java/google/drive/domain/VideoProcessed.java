@@ -7,15 +7,17 @@ import lombok.*;
 
 @Data
 @ToString
-public class NameIndexed extends AbstractEvent {
+public class VideoProcessed extends AbstractEvent {
 
     private Long id;
+    private String fileId;
+    private String url;
 
-    public NameIndexed(Index aggregate) {
+    public VideoProcessed(Video aggregate) {
         super(aggregate);
     }
 
-    public NameIndexed() {
+    public VideoProcessed() {
         super();
     }
 }
